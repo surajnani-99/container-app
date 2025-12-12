@@ -1,3 +1,4 @@
+/home/azureuser/container-app/java-microservice/src/main/java/com/example/demo/config/OpenAPIConfig.java
 /home/azureuser/container-app/java-microservice/src/main/java/com/example/demo/controller/GreetingController.java
 /home/azureuser/container-app/java-microservice/src/main/java/com/example/demo/model/Greeting.java
 /home/azureuser/container-app/java-microservice/src/main/java/com/example/demo/Application.java
