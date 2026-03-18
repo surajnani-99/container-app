@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Greeting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,9 @@ public class GreetingController {
     private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
     private final AtomicLong counter = new AtomicLong(1);
 
-    //  ADD THIS LINE (reads secret from env)
-    private final String secretValue = System.getenv("MY_SECRET");
+    // ✅ Inject secret from application.properties
+    @Value("${my.secret}")
+    private String secretValue;
 
     @GetMapping("/")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
