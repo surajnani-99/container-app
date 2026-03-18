@@ -15,7 +15,7 @@ public class GreetingController {
     private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
     private final AtomicLong counter = new AtomicLong(1);
 
-    // ✅ ADD THIS LINE (reads secret from env)
+    //  ADD THIS LINE (reads secret from env)
     private final String secretValue = System.getenv("MY_SECRET");
 
     @GetMapping("/")
