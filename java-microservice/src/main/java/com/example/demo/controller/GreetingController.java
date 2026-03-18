@@ -15,6 +15,9 @@ public class GreetingController {
     private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
     private final AtomicLong counter = new AtomicLong(1);
 
+    // ✅ ADD THIS LINE (reads secret from env)
+    private final String secretValue = System.getenv("MY_SECRET");
+
     @GetMapping("/")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 
@@ -23,7 +26,7 @@ public class GreetingController {
 
         return new Greeting(
                 counter.getAndIncrement(),
-                String.format("Hello, %s! (from container-app)", name),
+                String.format("Hello, %s! Secret: %s", name, secretValue),
                 Instant.now().toString()
         );
     }
@@ -36,7 +39,7 @@ public class GreetingController {
 
         Greeting response = new Greeting(
                 counter.getAndIncrement(),
-                incoming.getContent(),
+                incoming.getContent() + " | Secret: " + secretValue,
                 Instant.now().toString()
         );
 
@@ -46,4 +49,3 @@ public class GreetingController {
         return ResponseEntity.ok(response);
     }
 }
-
